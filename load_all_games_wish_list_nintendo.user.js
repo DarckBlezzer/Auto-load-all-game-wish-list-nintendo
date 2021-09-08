@@ -8,6 +8,7 @@
 // @match        https://www.nintendo.com/*/wish-list/
 // @icon         https://www.google.com/s2/favicons?domain=nintendo.com
 // @grant        none
+// @updateURL    https://github.com/Difegue/Mario-Maker-Linkifier/raw/master/MarioMakerLinks.user.js
 // ==/UserScript==
 
 const get_element = () => document.querySelector("wishlist-manager");
