@@ -1,11 +1,12 @@
 // ==UserScript==
-// @name         Show all nintendo wish list
+// @name         Show all games nintendo wish list
 // @namespace    http://tampermonkey.net/
 // @version      0.1
-// @description  load all games from nintendo wish list
-// @author       You
-// @match        https://www.nintendo.com/wish-list/
+// @description  This userscript help you to load all games that you have in your wish-list
+// @author       DarckBlezzer
+// @match        https://www.nintendo.com/wish-list/*
 // @match        https://www.nintendo.com/*/wish-list/
+// @match        https://www.nintendo.com/*/wish-list/*
 // @icon         https://www.google.com/s2/favicons?domain=nintendo.com
 // @grant        none
 // @updateURL    https://github.com/DarckBlezzer/Auto-load-all-game-wish-list-nintendo/raw/main/load_all_games_wish_list_nintendo.user.js
