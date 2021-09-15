@@ -44,7 +44,10 @@ const put_all_sales_on_top = () => {
   if (parent) {
     const childs = Array.from(parent.children);
     childs.forEach((child) => {
-      console.log(child.querySelector("div.prices.discounted"));
+      const price = child.querySelector("product-price");
+      if (price && price.hasAttribute("sale-price")) {
+        child.prepend(parent);
+      }
     });
   }
 };
