@@ -17,6 +17,8 @@ const get_button = () => document.querySelector("styled-button.secondary-blue");
 const get_select = () => document.querySelector("styled-select");
 const get_items_container = () =>
   document.querySelector("ul.items.constrained");
+const get_main_container = () => document.querySelector("main#main");
+const get_sales_container = () => document.querySelector("div#sales_container");
 
 const check_if_element_has_class = () => {
   const element = get_element();
@@ -42,11 +44,23 @@ const wait_until_has_class = function (fun = () => {}) {
 const put_all_sales_on_top = () => {
   const parent = get_items_container();
   if (parent) {
+    console.log("put_all_sales_on_top");
+    let sales_container = get_sales_container();
+    if (!sales_container) {
+      const main_container = get_main_container();
+      const sales_element = document.createElement("div");
+      sales_element.setAttribute("id", "sales_container");
+      main_container.prepend(sales_element);
+      sales_container = sales_element;
+    }
+    sales_container.replaceChildren();
+
     const childs = Array.from(parent.children);
     childs.forEach((child) => {
       const price = child.querySelector("product-price");
       if (price && price.hasAttribute("sale-price")) {
-        parent.prepend(child);
+        sales_container.prepend(child);
+        console.log("Offerta movida");
       }
     });
   }
@@ -57,10 +71,11 @@ const run_until_not_has_more = function (fun = () => {}) {
     if (check_if_element_has_items()) {
       fun();
       run_until_not_has_more(...arguments);
-    } else {
-      console.log("There isn't more games :(");
-      put_all_sales_on_top();
     }
+    // else {
+    //   console.log("There isn't more games :(");
+    //   setTimeout(() => put_all_sales_on_top(), 300);
+    // }
   }, 500);
 };
 
