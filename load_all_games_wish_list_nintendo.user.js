@@ -45,7 +45,7 @@ const run_until_not_has_more = function (fun = () => {}) {
       fun();
       run_until_not_has_more(...arguments);
     } else {
-      console.log("ya no hay items :(");
+      console.log("ya no hay items :( test");
     }
   }, 500);
 };
