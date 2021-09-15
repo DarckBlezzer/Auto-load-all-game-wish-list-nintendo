@@ -15,6 +15,7 @@
 const get_element = () => document.querySelector("wishlist-manager");
 const get_button = () => document.querySelector("styled-button.secondary-blue");
 const get_select = () => document.querySelector("styled-select");
+const get_items_container = () => document.querySelector("ul.items.constrained");
 
 const check_if_element_has_class = () => {
     const element = get_element();
@@ -35,6 +36,8 @@ const run_until_not_has_more = function (fun = () => {}) {
         if(check_if_element_has_items()){
             fun();
             run_until_not_has_more(...arguments);
+        }else{
+            console.log("ya no hay items :(")
         }
     }, 500);
 };
@@ -46,6 +49,8 @@ const show_all = () => {
        if(button) button.click();
    });
 }
+
+
 
 window.onload = function() {
     if(get_element()){
