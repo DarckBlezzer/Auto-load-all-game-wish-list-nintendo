@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Show all games nintendo wish list
 // @namespace    http://tampermonkey.net/
-// @version      3
+// @version      1.4
 // @description  This userscript help you to load all games that you have in your wish-list
 // @author       DarckBlezzer
 // @match        https://www.nintendo.com/wish-list/*
