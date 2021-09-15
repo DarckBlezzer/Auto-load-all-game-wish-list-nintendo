@@ -73,13 +73,13 @@ const run_until_not_has_more = function (fun = () => {}) {
       run_until_not_has_more(...arguments);
     } else {
       console.log("There isn't more games :(");
-      setTimeout(() => put_all_sales_on_top(), 300);
+      // setTimeout(() => put_all_sales_on_top(), 300);
     }
   }, 500);
 };
 
 const show_all = () => {
-  //   restore_games();
+  restore_games();
   run_until_not_has_more(() => {
     console.log("Click load more baby :3");
     const button = get_button();
@@ -98,36 +98,3 @@ window.onload = function () {
     });
   }
 };
-
-var open = window.XMLHttpRequest.prototype.open,
-  send = window.XMLHttpRequest.prototype.send,
-  onReadyStateChange;
-
-function openReplacement(method, url, async, user, password) {
-  var syncMode = async !== false ? "async" : "sync";
-  console.warn(
-    "Preparing " + syncMode + " HTTP request : " + method + " " + url
-  );
-  return open.apply(this, arguments);
-}
-
-function sendReplacement(data) {
-  console.warn("Sending HTTP request data : ", data);
-
-  if (this.onreadystatechange) {
-    this._onreadystatechange = this.onreadystatechange;
-  }
-  this.onreadystatechange = onReadyStateChangeReplacement;
-
-  return send.apply(this, arguments);
-}
-
-function onReadyStateChangeReplacement() {
-  console.warn("HTTP request ready state changed : " + this.readyState);
-  if (this._onreadystatechange) {
-    return this._onreadystatechange.apply(this, arguments);
-  }
-}
-
-window.XMLHttpRequest.prototype.open = openReplacement;
-window.XMLHttpRequest.prototype.send = sendReplacement;
