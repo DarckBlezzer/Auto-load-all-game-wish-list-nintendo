@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Show all games nintendo wish list
 // @namespace    http://tampermonkey.net/
-// @version      1.4
+// @version      1.5
 // @description  This userscript help you to load all games that you have in your wish-list
 // @author       DarckBlezzer
 // @match        https://www.nintendo.com/wish-list/*
@@ -46,7 +46,7 @@ const put_all_sales_on_top = () => {
     childs.forEach((child) => {
       const price = child.querySelector("product-price");
       if (price && price.hasAttribute("sale-price")) {
-        child.prepend(parent);
+        parent.prepend(child);
       }
     });
   }
