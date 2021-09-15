@@ -39,13 +39,24 @@ const wait_until_has_class = function (fun = () => {}) {
   );
 };
 
+const put_all_sales_on_top = () => {
+  const parent = get_items_container();
+  if (parent) {
+    const childs = Array.from(parent.children);
+    childs.forEach((child) => {
+      console.log(child.querySelector("div.prices.discounted"));
+    });
+  }
+};
+
 const run_until_not_has_more = function (fun = () => {}) {
   setTimeout(() => {
     if (check_if_element_has_items()) {
       fun();
       run_until_not_has_more(...arguments);
     } else {
-      console.log("ya no hay items :( test");
+      console.log("There isn't more games :(");
+      put_all_sales_on_top();
     }
   }, 500);
 };
