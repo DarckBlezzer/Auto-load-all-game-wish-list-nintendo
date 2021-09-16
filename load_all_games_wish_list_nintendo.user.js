@@ -17,6 +17,7 @@ const get_button = () => document.querySelector("styled-button.secondary-blue");
 const get_select = () => document.querySelector("styled-select");
 const get_items_container = () =>
   document.querySelector("ul.items.constrained");
+let games_with_sales_price = [];
 
 const check_if_element_has_class = (classes) => {
   const element = get_element();
@@ -46,23 +47,39 @@ const restore_games = () => {
     if (!all_element_games) {
       all_element_games = games_container.children();
     } else {
+      all_element_games = games_container.children();
       games_container.replaceChildren(...all_element_games);
     }
   }
+};
+
+const remove_first_sales_on_top = () => {
+  const parent = get_items_container();
+  if (parent) {
+    games_with_sales_price.forEach((child) => {
+      parent.removeChild(child);
+    });
+  }
+
+  games_with_sales_price = [];
 };
 
 const put_all_sales_on_top = () => {
   const parent = get_items_container();
   if (parent) {
     console.log("put_all_sales_on_top");
-    const childs = Array.from(parent.children);
-    childs.forEach((child) => {
+    remove_first_sales_on_top();
+
+    const list = Array.from(parent.children);
+    for (let i = list.length - 1; i >= 0; i--) {
+      const child = list[i].cloneNode(true);
       const price = child.querySelector("product-price");
       if (price && price.hasAttribute("sale-price")) {
+        games_with_sales_price.push(child);
         parent.prepend(child);
         console.log("Offerta movida");
       }
-    });
+    }
   }
 };
 
@@ -73,13 +90,13 @@ const run_until_not_has_more = function (fun = () => {}) {
       run_until_not_has_more(...arguments);
     } else {
       console.log("There isn't more games :(");
-      // setTimeout(() => put_all_sales_on_top(), 300);
+      put_all_sales_on_top();
     }
   }, 500);
 };
 
 const show_all = () => {
-  restore_games();
+  // restore_games();
   run_until_not_has_more(() => {
     console.log("Click load more baby :3");
     const button = get_button();
